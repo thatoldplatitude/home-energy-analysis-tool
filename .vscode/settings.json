@@ -3,5 +3,11 @@
         "rules-engine"
     ],
     "python.testing.unittestEnabled": false,
-    "python.testing.pytestEnabled": true
+    "python.testing.pytestEnabled": true,
+    "python.autoComplete.extraPaths": [
+        "../rules-engine/.venv/lib/python3.9/site-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "../rules-engine/.venv/lib/python3.9/site-packages"
+    ]
 }
