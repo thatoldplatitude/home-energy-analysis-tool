@@ -6,6 +6,7 @@ import  PyodideUtil  from "../utils/pyodide.util.js";
 import { SummaryInput } from "#models/SummaryInput.tsx";
 import GeocodeUtil from "../utils/GeocodeUtil.js";
 import WeatherUtil from "../utils/WeatherUtil.js";
+import { TemperatureInput } from "#models/TemperatureInput.tsx";
 
 var SI: SummaryInput;
 
@@ -30,7 +31,7 @@ export async function action({
 	
 	
 
-	PU.runit(SI,null,TIWD,BI);
+	PU.runit(SI,null,TIWD,JSON.stringify(BI));
 
 	return redirect("/inputs1")
 }
@@ -50,6 +51,7 @@ async function genny(longitude: number, latitude: number, start_date: string, en
 	SI = new SummaryInput(6666,"GAS",80,67,null,null,60);
 
 
+	// const TIWD: TemperatureInput = await WU.getThatWeathaData(longitude, latitude, start_date, end_date);
 	const TIWD = await WU.getThatWeathaData(longitude, latitude, start_date, end_date);
 	const BI = [{
 		period_start_date: new Date("2023-12-30"),//new Date("2023-12-30"),

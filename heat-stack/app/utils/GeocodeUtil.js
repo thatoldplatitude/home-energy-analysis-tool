@@ -4,6 +4,14 @@ const params = new URLSearchParams();
 
 class GeocodeUtil {
 
+    /**
+     * 
+     * @param {*} street 
+     * @param {*} city 
+     * @param {*} state 
+     * @returns x,y {x,y} lon/lat. If the given address was valid. I've implemented 0 handling here. 
+     *  This is the happiest of paths, with hardcoded values also...
+     */
     async getLL(street,city,state) {
         params.append("street",street);
         params.append("state",state);

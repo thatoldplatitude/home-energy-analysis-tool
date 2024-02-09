@@ -67,6 +67,7 @@ class PyodideUtil {
 
     runit(rs,rn,rt,rb) {
 		let pyProcess = this.pyodideModule.runPython(`
+		import json
 		from pyodide.ffi import to_js, JsProxy
 		from pyodide.code import run_js
 		import js
@@ -103,11 +104,12 @@ class PyodideUtil {
 			
 
 			t = t.to_py(default_converter=default_converter)
-			b = b.to_py(default_converter=default_converter)
 
 			summa_inpoot = SummaryInput(**svm)
 			tempinz = TemperatureInput(**t)
 
+
+			b = json.loads(b)
 			billy_normz = []
 			for x in b:
 				print(x)

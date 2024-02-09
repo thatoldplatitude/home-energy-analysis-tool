@@ -1,4 +1,4 @@
-class TemperatureInput {
+export class TemperatureInput {
     dates: Date[];
     temperatures: number[];
 
