@@ -1,13 +1,16 @@
 import { Form } from '@remix-run/react'
 import { Button } from '#/app/components/ui/button.tsx'
+
 import { Input } from '#/app/components/ui/input.tsx'
 import { Label } from '#/app/components/ui/label.tsx'
 
-export function CurrentHeatingSystem() {
+type CurrentHeatingSystemProps = {fields: any};
+
+export function CurrentHeatingSystem(props: CurrentHeatingSystemProps) {
 	const titleClass = 'text-5xl font-extrabold tracking-wide'
-	const subtitleClass = 'text-2xl font-semibold text-zinc-950 mt-9'
 	const descriptiveClass = 'mt-2 text-sm text-slate-500'
 	const componentMargin = 'mt-10'
+	const subtitleClass = 'text-2xl font-semibold text-zinc-950 mt-9'
 
 	return (
 		<div>
@@ -109,10 +112,7 @@ export function CurrentHeatingSystem() {
 					</div>
 				</div>
 
-				<div>
-					<h6 className={`${subtitleClass}`}>Heating Fuel Usage</h6>
-					<Button type="submit">Upload</Button>
-				</div>
+				
 			</Form>
 
 			{/* removed temporarily for single page app format */}
