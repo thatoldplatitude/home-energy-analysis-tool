@@ -115,8 +115,8 @@ export function HomeInformation(props: HomeInformationProps) {
 				{/* removed temporarily for single page app format */}
 				<div>
 					<Button type="submit">Next ={'>'}</Button>
-				</div>
-			</Form>
+				</div> 
+			{/*</Form>*/}
 		</div>
 	)
 }
