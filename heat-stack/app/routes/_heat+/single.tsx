@@ -32,6 +32,24 @@ import { HomeInformation } from '../../components/ui/heat/CaseSummaryComponents/
 import HeatLoadAnalysis from './heatloadanalysis.tsx'
 import { Button } from '#/app/components/ui/button.tsx'
 
+/**
+ * Who!?: thatoldplatitude
+ * WHHHHHATTT!>!...(is this for?): just shoving a bunch of stuff in this
+ * file just for a POC. moved from `heat-stack/app/routes/homes.tsx`
+ * 
+ * It'd be better to just make this in a test file, I'll do that later.
+ * ...lol, suuuuure I will.
+ */
+import PyodideUtil from '#app/utils/pyodide.util.js';
+import { SummaryInput } from '#models/SummaryInput.tsx';
+import GeocodeUtil from '#app/utils/GeocodeUtil.js';
+import WeatherUtil from '#app/utils/WeatherUtil.js';
+
+var SI: SummaryInput;
+const PU = PyodideUtil.getInstance();
+const GU = new GeocodeUtil();
+const WU = new WeatherUtil();
+
 const nameMaxLength = 50
 const addressMaxLength = 100
 
@@ -69,7 +87,16 @@ export async function action({ request, params }: ActionFunctionArgs) {
 	// Checks if url has a homeId parameter, throws 400 if not there
 	// invariantResponse(params.homeId, 'homeId param is required')
 
-	const formData = await request.formData()
+	const formData = await request.formData();
+	formData.forEach(d => console.log(d));
+
+	/**
+ 	* thatoldplatitude test flow addition implementations
+ 	*/
+
+	let {x,y} = await GU.getLLOL(formData.get("address"));
+
+
 	const submission = parseWithZod(formData, {
 		schema: Schema,
 	})
@@ -117,7 +144,7 @@ export default function Inputs() {
 			<Form
 				id={form.id}
 				method="post"
-				onSubmit={form.onSubmit}
+				//onSubmit={form.onSubmit} // Idk what this does. But with it in, when clicking "Submit", nothing happens. removing it allows for the form to be submitted as expected.
 				action="/single"
 			>
 				<HomeInformation fields={fields} />

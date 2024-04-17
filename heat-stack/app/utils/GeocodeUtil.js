@@ -1,5 +1,6 @@
 const BASE_URL =  "https://geocoding.geo.census.gov";
 const ADDRESS_ENDPOINT = "/geocoder/locations/address";
+const ONELINE_ADDRESS_ENDPOINT = "/geocoder/locations/onelineaddress";
 const params = new URLSearchParams();
 
 class GeocodeUtil {
@@ -22,6 +23,20 @@ class GeocodeUtil {
         let url = new URL(BASE_URL+ADDRESS_ENDPOINT+"?"+params.toString());
         let rezzy = await fetch(url);
         let jrez = await rezzy.json();
+        let coordz = jrez.result.addressMatches[0].coordinates;
+        console.log(coordz);
+        return coordz;
+    }
+
+    async getLLOL(address) {
+        params.append("address",address);
+        params.append("format","json");
+        params.append("benchmark",2020);
+
+        let url = new URL(BASE_URL+ONELINE_ADDRESS_ENDPOINT+"?"+params.toString());
+        let rezzy = await fetch(url);
+        let jrez = await rezzy.json();
+        console.log("JREZ: ",jrez);
         let coordz = jrez.result.addressMatches[0].coordinates;
         console.log(coordz);
         return coordz;
